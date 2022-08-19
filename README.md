@@ -85,3 +85,18 @@ This will install:
 },
 
 ```
+
+Now create an `index.html` file in your root project with the following content:
+
+```
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>My React Configuration Setup</title>
+ </head>
+ <body>
+ <div id="root"></div>
+ <script src="./dist/bundle.js"></script>
+ </body>
+</html>
+```
