@@ -172,3 +172,79 @@ module.exports = {
 ```
 
 This webpack config is basically saying that the `entry` point of our application is from `index.js`, so pull everything that’s needed by that file, then put the `output` of the bundling process into the dist directory, named `bundle.js.` Oh, if we’re running on `webpack-dev-server`, then tell the server to serve content from `contentBase` config, which is the same directory this config is in. For all .js or .jsx files, use `babel-loader` to transpile all of them.
+
+In order to use Babel presets, create a new `.babelrc` file
+
+```
+touch .babelrc
+```
+
+Write the following content:
+
+```
+
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ]
+}
+
+```
+
+Now run `npm run start` again. This time it will work.
+
+## Adding Prettier
+
+To further speed up development, let’s make our code formatter using Prettier. Install the dependency locally and use the — save-exact argument since Prettier introduces stylistic changes in patch releases.
+
+
+```
+npm install --save-dev --save-exact prettier
+
+```
+
+Now we need to write the `.prettierrc` configuration file:
+
+```
+
+{
+ "semi": true,
+ "singleQuote": true,
+ "trailingComma": "es5"
+}
+
+```
+
+The rules means that we want to add semicolon for the end of every statement, use a single quote whenever appropriate and put trailing commas for multi-line ES5 code like objects or arrays.
+
+You can run Prettier from the command line with:
+
+```
+npx prettier --write "src/**/*.js"
+
+```
+
+
+Or add a new script to our `package.json` file:
+
+
+```
+
+"scripts": {
+ "test": "echo \"Error: no test specified\" && exit 1",
+ "start": "webpack-dev-server --mode development",
+ "format": "prettier --write \"src/**/*.js\""
+},
+
+```
+
+Now we can run Prettier using `npm run format`.
+
+Now we can run Prettier using npm run format.
+
+```
+"editor.formatOnSave": true
+
+```
+
