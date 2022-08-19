@@ -54,3 +54,20 @@ Initialize NPM project by running:
 
 ```npm init -y```
 
+Now install react
+
+`npm install react react-dom`
+
+## Configuring webpack 4
+
+Our first stop will be the webpack. It’s a very popular and powerful tool for configuring not only React, but almost all front-end projects. The core function of webpack is that it takes a bunch of JavaScript files we write in our project and turns them into a single, minified file, so that it will be quick to serve. Starting from webpack 4, we aren’t required to write a configuration file at all to use it, but in this tutorial we will write one so that we can understand it better.
+
+First, let’s do some installation
+
+`npm install --save-dev webpack webpack-dev-server webpack-cli`
+
+This will install:
+
++ # webpack module — which include all core webpack functionality
++ # webpack-dev-server — this development server automatically rerun webpack when our file is changed
++ # webpack-cli — enable running webpack from the command line
