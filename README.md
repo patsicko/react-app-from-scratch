@@ -77,6 +77,11 @@ This will install:
  
  Let’s try to run webpack by adding the following script to `package.json`
  
+`
+`
 `"scripts": {
  "start": "webpack-dev-server --mode development",
-},`
+},
+`
+`
+`
