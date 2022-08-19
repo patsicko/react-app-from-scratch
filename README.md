@@ -74,3 +74,9 @@ This will install:
  — this development server automatically rerun webpack when our file is changed
   + webpack-cli 
  — enable running webpack from the command line
+ 
+ Let’s try to run webpack by adding the following script to `package.json`
+ 
+``` "scripts": {
+ "start": "webpack-dev-server --mode development",
+},```
