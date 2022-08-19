@@ -100,3 +100,9 @@ Now create an `index.html` file in your root project with the following content:
  </body>
 </html>
 ```
+
+Create a new directory named src and inside it, create a new `index.js` file
+
+```
+mkdir src && cd src && touch index.js
+```
