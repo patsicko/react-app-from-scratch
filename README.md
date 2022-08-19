@@ -49,3 +49,8 @@ Now that you’re convinced to learn some configuration, let’s start by initia
 Open up the command line or Git bash and create a new directory
 
 ``mkdir react-config-tutorial && cd react-config-tutorial``
+
+Initialize NPM project by running:
+
+```npm init -y```
+
