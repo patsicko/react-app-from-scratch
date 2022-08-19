@@ -41,3 +41,11 @@ Furthermore, hiding React configuration by create-react-app is meant for develop
 + Adding MobX and Redux
 + Making your own configuration just for learning sake
 
+If you look around the Internet, there are some hacks to get around CRA limitations like create-react-app rewired.
+But really, why not just learn React configuration on your own? I will help you get there. Step by step.
+
+Now that you’re convinced to learn some configuration, let’s start by initializing a React project from scratch.
+
+Open up the command line or Git bash and create a new directory
+
+`mkdir react-config-tutorial && cd react-config-tutorial`
