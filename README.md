@@ -279,3 +279,74 @@ npm --save-dev install eslint eslint-loader babel-eslint eslint-config-react esl
 
 `eslint` is the core dependency for all functionalities, while `eslint-loader` enables us to hook eslint into webpack. Now since React used ES6+ syntax, we will add `babel-eslint` — a parser that enables eslint to lint all valid ES6+ codes.
 `eslint-config-react` and `eslint-plugin-react` are both used to enable **ESLint** to use pre-made rules.
+
+
+Since we already have webpack, we only have to modify the config slightly:
+
+```
+
+module.exports = {
+  // modify the module
+  module: {
+    rules: [{
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: ['babel-loader', 'eslint-loader'] // include eslint-loader
+    }]
+  },
+};
+
+```
+
+Then create an eslint config file named `.eslintrc` with this content:
+
+```
+
+{
+  "parser": "babel-eslint",
+  "extends": "react",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
+
+```
+
+The config is basically saying, “**Hey ESLint**, please parse the code using `babel-eslint` before you check it, and when you’re checking it, please check if all the rules from our React rules config is passed. Take global variables from the environment of browser and node. Oh, and if it’s React code, take the version from the module itself. That way the user won’t have to specify the version manually.”
+
+Rather than specifying our own rules manually, we simply extend react rules which were made available by `eslint-config-react` and `eslint-plugin-react`.
+
+
+## I found errors! What do I do?
+
+Unfortunately the only way to really figure out how to fix ESLint errors is by looking at the documentation for rules. There’s a quick way to fix ESLint errors by using `eslint--fix`, and it’s actually good for a quick fix. Let’s add a script on our `package.json` file:
+
+```
+
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "webpack-dev-server --mode development",
+  "format": "prettier --write \"src/**/*.js\"",
+  "eslint-fix": “eslint --fix \"src/**/*.js\"", // the eslint script
+  "build": "webpack --mode production"
+},
+
+```
+
+Then run it with npm run `eslint-fix`. Don’t worry if you’re still fuzzy about ESLint for now. You will learn more about ESLint as you use it.
+
+## Adding CSS LESS processor
+
+In order to add the LESS processor into our React application, we will require both less and loader packages from webpack:
+
+```
+npm install --save-dev less less-loader css-loader style-loader
+
+```
+`less-loader` will compile our less file into css, while `css-loader` will resolve css syntax like `import` or `url()`. The `style-loader` will get our compiled css and load it up into `<style>` tag in our bundle. This is great for development because it lets us update our style on the fly, without needing to refresh the browser.
