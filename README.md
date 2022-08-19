@@ -381,6 +381,133 @@ body {
 
 ```
 
+Now import our `main.less` file from `index.js`:
+
+```
+import "./style/main.less";
+```
+Then update our webpack configuration `module` property:
+
+```
+module: {
+  rules: [{
+    test: /\.(js|jsx)$/,
+    exclude: /node_modules/,
+    use: ['babel-loader', 'eslint-loader']
+  },
+  {
+    test: /\.less$/,
+    use: [
+      'style-loader',
+      'css-loader',
+      'less-loader',
+    ],
+  },
+ ]
+},
+
+```
+
+Run the start script and we’re good to go!
+
+## Deploying React app to Netlify
+
+All applications need to be deployed for the last step, and for React applications, deployment is very easy.
+
+First, let’s change the build output and development `contentBase` from `dist` to `build` in our Webpack config.
+
+```
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'build'), // change this
+    publicPath: '/',
+    filename: 'bundle.js'
+  },
+  devServer: {
+    contentBase: "./build",
+  },
+//…
+
+```
+
+Now let’s install a new Webpack plugin named HtmlWebpackPlugin
+
+```
+npm install html-webpack-plugin -D
+
+```
+This plugin will generate `index.html` file in the same directory where our `bundle.js` is created by `Webpack`. In this case, the build directory.
+
+Why do we need this plugin? Because Netlify requires a single directory to be made the root directory, so we can’t use `index.html` in our root directory using Netlify. You need to update your webpack config to look like this:
+
+```
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+module.exports = {
+  entry: //…
+  output: {
+    //…
+  },
+  devServer: {
+    contentBase: "./build",
+  },
+  module: {
+    //…
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve('./index.html'),
+    }),
+  ]
+};
+
+```
+
+And please remove the `script` tag from your `index.html`:
+
+```
+
+<!DOCTYPE html><html>  <head>    <title>My React Configuration Setup</title>  </head>  <body>    <div id="root"></div>  </body></html><!DOCTYPE html>
+<html>
+  <head>
+    <title>My React Configuration Setup</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+
+```
+
+Now you can test the config with `npm run build` command. Once it’s done, push your boilerplate into a GitHub repo. It’s time to deploy our application!
+
+Now let’s register a **Netlify** account. If you haven’t heard of Netlify before, it’s an amazing static site hosting that provides all the tools you need to deploy a static site for free. What’s a static site? It’s a website created from a collection of **static HTML** pages, without any backend. Our React boilerplate as it is now counts as a static site, because we have no backend configured and its just HTML and JavaScript.
+
+After sign up, select new site from Git and Choose GitHub as your Git provider:
+
+![image](https://user-images.githubusercontent.com/63926982/185547047-6b42049f-4dcf-4a32-b458-fa1b9c64cbf4.png)
+
+
+You need to grant permissions for Netlify, and then select your React boilerplate repo.
+
+![image](https://user-images.githubusercontent.com/63926982/185547101-f8911035-e94a-48f0-a19c-e7c7784f5adf.png)
+
+Now you need to enter the build command and publishing directory. As you can see, this is why we need HtmlWebpackPlugin, because we need to serve everything from one directory only. Rather than manually updating our root index.html file for changes, we just generate it using the plugin.
+
+![image](https://user-images.githubusercontent.com/63926982/185547214-d5d87778-f397-496f-9b0b-5ac2e667a190.png)
+
+
+Make sure you have the same command as the screenshot above, or your app might not run.
+
+![image](https://user-images.githubusercontent.com/63926982/185547267-640661b7-3fd9-41d4-ae9d-bddc5490bdf8.png)
+
+
+Once the deploys status turns to `published` (number 2 above), you can go to the random site name Netlify has assigned for your application (number 1).
+
+Your React application is deployed. Awesome!
+
 
 
 
