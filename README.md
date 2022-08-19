@@ -68,9 +68,9 @@ First, let’s do some installation
 
 This will install:
 
- # + webpack module 
+  + webpack module 
  — which include all core webpack functionality
- # + webpack-dev-server 
+  + webpack-dev-server 
  — this development server automatically rerun webpack when our file is changed
- # + webpack-cli 
+  + webpack-cli 
  — enable running webpack from the command line
