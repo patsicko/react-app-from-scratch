@@ -36,8 +36,8 @@ Developers are naturally curious people, so if you feel you’d like to know how
 
 Furthermore, hiding React configuration by create-react-app is meant for developers starting to learn React, as configuration should not stand in the way of getting started. But when things get serious, of course you need more tools to integrate in your project. Think about:
 
-. Doing server side rendering
++ Doing server side rendering
++ Using new ES versions
++ Adding MobX and Redux
++ Making your own configuration just for learning sake
 
-. Using new ES versions
-Adding MobX and Redux
-Making your own configuration just for learning sake
