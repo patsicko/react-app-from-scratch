@@ -350,3 +350,40 @@ npm install --save-dev less less-loader css-loader style-loader
 
 ```
 `less-loader` will compile our less file into css, while `css-loader` will resolve css syntax like `import` or `url()`. The `style-loader` will get our compiled css and load it up into `<style>` tag in our bundle. This is great for development because it lets us update our style on the fly, without needing to refresh the browser.
+
+
+Now let’s add some css files to create a new style directory in `src/style`
+
+
+```
+cd src && mkdir style && touch header.less && touch main.less
+
+```
+`header.less` content:
+
+```
+
+.header {
+  background-color: #3d3d;
+}
+
+```
+
+`main.less` content:
+
+```
+
+@import "header.less";
+@color: #f5adad;
+body {
+  background-color: @color;
+}
+
+```
+
+
+
+
+
+
+
