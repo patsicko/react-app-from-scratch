@@ -143,3 +143,32 @@ npm install --save-dev @babel/core @babel/preset-env \@babel/preset-react babel-
 + **@babel/preset-env** is the default Babel preset used to transform ES6+ into valid ES5 code. Optionally configures browser polyfills automatically.
 + **@babel/preset-react** is used for transforming JSX and React class syntax into valid JavaScript code.
 + **babel-loader** is a webpack loader that hooks Babel into webpack. We will run Babel from webpack with this package.
+
+To hook Babel into our webpack, we need to create a webpack configuration file. Let’s write a `webpack.config.js` file:
+
+```
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: __dirname + '/dist',
+    publicPath: '/',
+    filename: 'bundle.js'
+  },
+  devServer: {
+    contentBase: './dist',
+  },
+  module: {
+    rules: [
+    {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: ['babel-loader']
+    }
+    ]
+  },
+};
+
+```
+
+This webpack config is basically saying that the `entry` point of our application is from `index.js`, so pull everything that’s needed by that file, then put the `output` of the bundling process into the dist directory, named `bundle.js.` Oh, if we’re running on `webpack-dev-server`, then tell the server to serve content from `contentBase` config, which is the same directory this config is in. For all .js or .jsx files, use `babel-loader` to transpile all of them.
