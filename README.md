@@ -15,9 +15,29 @@ This guide will cover the most simple React configuration that I’ve personally
 3 .Configuring Babel 7
 
 4.Adding Prettier
+
 5.Adding source map for better error logs
+
 6.Setting up ESLint
+
 7.I found errors! What do I do?
+
 8.Adding CSS LESS processor
+
 9.Deploying React app to Netlify
+
 10.Conclusion
+
+## Why create your own configuration?
+
+There are certain reasons that make creating your own React configuration make sense. You are likely good with React and you want to learn how to use tools like webpack and Babel on your own. These build tools are powerful, and if you have some extra time, it’s always good to learn about them.
+
+Developers are naturally curious people, so if you feel you’d like to know how things work and which part does what, then let me help you with it.
+
+Furthermore, hiding React configuration by create-react-app is meant for developers starting to learn React, as configuration should not stand in the way of getting started. But when things get serious, of course you need more tools to integrate in your project. Think about:
+
+. Doing server side rendering
+
+. Using new ES versions
+Adding MobX and Redux
+Making your own configuration just for learning sake
