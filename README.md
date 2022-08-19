@@ -248,3 +248,34 @@ Now we can run Prettier using npm run format.
 
 ```
 
+## Adding source map for better error logs
+
+
+Since webpack bundles the code, source maps are mandatory to get a reference to the original file that raised an error. For example, if you bundle three source files (`a.js`, `b.js`, and `c.js`) into one bundle (`bundler.js`) and one of the source files contains an error, the stack trace will simply point to `bundle.js`. This is problematic as you probably want to know exactly if it’s the a, b, or c file that is causing an error.
+
+You can tell webpack to generate source maps using the devtool property of the configuration:
+```
+module.exports = {
+  devtool: 'inline-source-map',
+  // … the rest of the config
+};
+
+```
+
+Although it will cause a slower build, it has no effect on production. 
+Sourcemaps are only downloaded if you open the browser DevTools.
+
+## Setting up ESLint
+
+Linter is a program that checks our code for any error or warning that can cause bugs. JavaScript’s linter, ESLint, is a very flexible linting program that can be configured in many ways.
+
+But before we get ahead, let’s install ESLint into our project:
+
+```
+
+npm --save-dev install eslint eslint-loader babel-eslint eslint-config-react eslint-plugin-react
+
+```
+
+`eslint` is the core dependency for all functionalities, while `eslint-loader` enables us to hook eslint into webpack. Now since React used ES6+ syntax, we will add `babel-eslint` — a parser that enables eslint to lint all valid ES6+ codes.
+`eslint-config-react` and `eslint-plugin-react` are both used to enable **ESLint** to use pre-made rules.
