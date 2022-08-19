@@ -80,7 +80,9 @@ This will install:
 `
 `
 `"scripts": {
+
  "start": "webpack-dev-server --mode development",
+ 
 },
 `
 `
