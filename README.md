@@ -121,3 +121,25 @@ class Welcome extends React.Component {
 ReactDOM.render(<Welcome />, document.getElementById("root"));
 
 ```
+Run the webpack by using `npm run start` … And an error will be triggered.
+
+```
+You may need an appropriate loader to handle this file type
+```
+
+## Configuring Babel 7
+
+The React component we wrote above used the `class` syntax, which is a feature of ES6. Webpack needs Babel to process ES6 into ES5 syntaxes in order for this class to work.
+
+Let’s install Babel into our project
+
+```
+npm install --save-dev @babel/core @babel/preset-env \@babel/preset-react babel-loader
+```
+
+## Why do we need these packages?
+
++ **@babel/core** is the main dependency that includes babel transform script.
++ **@babel/preset-env** is the default Babel preset used to transform ES6+ into valid ES5 code. Optionally configures browser polyfills automatically.
++ **@babel/preset-react** is used for transforming JSX and React class syntax into valid JavaScript code.
++ **babel-loader** is a webpack loader that hooks Babel into webpack. We will run Babel from webpack with this package.
