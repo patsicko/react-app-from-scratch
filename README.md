@@ -14,10 +14,10 @@ This guide will cover the most simple React configuration that I’ve personally
 
 3 .Configuring Babel 7
 
-Adding Prettier
-Adding source map for better error logs
-Setting up ESLint
-I found errors! What do I do?
-Adding CSS LESS processor
-Deploying React app to Netlify
-Conclusion
+4.Adding Prettier
+5.Adding source map for better error logs
+6.Setting up ESLint
+7.I found errors! What do I do?
+8.Adding CSS LESS processor
+9.Deploying React app to Netlify
+10.Conclusion
